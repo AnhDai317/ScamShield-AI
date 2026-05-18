@@ -395,10 +395,39 @@ export function runLocalHeuristicAnalysis(input: string, detectedType: InputType
     const lowerInput = trimmed.toLowerCase();
     
     // Scams lookups
-    const urgencyKeywords = ['khóa', 'tạm dừng', 'cảnh báo', 'xác minh', 'ngay', 'lập tức', 'locked', 'suspended', 'verify', 'urgent', 'immediately'];
-    const rewardKeywords = ['trúng thưởng', 'nhận thưởng', 'tặng', 'quà', 'miễn phí', 'triệu', 'tỷ', 'winner', 'won', 'prize', 'gift', 'free', 'lucky'];
-    const sensitiveKeywords = ['otp', 'mật khẩu', 'password', 'cccd', 'cmnd', 'stk', 'tài khoản', 'bank account', 'card details'];
-    const impersonationKeywords = ['vietcombank', 'mbbank', 'techcombank', 'bidv', 'agribank', 'police', 'congan', 'cong an', 'bưu điện', 'buudien', 'vtv', 'tiki', 'shopee', 'lazada', 'telegram'];
+    const urgencyKeywords = [
+      // Vietnamese
+      'khóa', 'tạm dừng', 'cảnh báo', 'xác minh', 'ngay', 'lập tức',
+      // English
+      'locked', 'suspended', 'verify', 'urgent', 'immediately', 'expires',
+      'limited time', 'act now', 'within 24', 'account blocked', 'unusual activity'
+    ];
+
+    const rewardKeywords = [
+      // Vietnamese  
+      'trúng thưởng', 'nhận thưởng', 'tặng', 'quà', 'miễn phí', 'triệu', 'tỷ',
+      // English
+      'winner', 'won', 'prize', 'gift', 'free', 'lucky', 'congratulations',
+      'selected', 'earn $', 'per day', 'daily income', 'passive income'
+    ];
+
+    const sensitiveKeywords = [
+      // Vietnamese
+      'otp', 'mật khẩu', 'cccd', 'cmnd', 'stk', 'tài khoản',
+      // English
+      'password', 'national id', 'id card', 'selfie', 'bank account',
+      'card details', 'credit card', 'social security', 'passport', 'send photo'
+    ];
+
+    const impersonationKeywords = [
+      // Vietnamese banks
+      'vietcombank', 'mbbank', 'techcombank', 'bidv', 'agribank',
+      'police', 'congan', 'cong an', 'bưu điện',
+      // English
+      'whatsapp', 'telegram', 'facebook', 'customer service',
+      'hr department', 'recruitment', 'hiring manager', 'remote work',
+      'work from home', 'part-time', 'no experience'
+    ];
 
     let urgencyHits = urgencyKeywords.filter(kw => lowerInput.includes(kw));
     let rewardHits = rewardKeywords.filter(kw => lowerInput.includes(kw));
